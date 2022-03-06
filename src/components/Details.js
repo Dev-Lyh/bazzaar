@@ -1,43 +1,20 @@
 /* eslint-disable prettier/prettier */
 import { View, Text, Image, Button, StyleSheet, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import Modal from 'react-native-modal';
 
 export default function Details(props) {
 
-  const [getModal, setModal] = useState(false);
+  const [getTitle, setTitle] = useState(props.title);
+  const [getPrice, setPrice] = useState(props.price);
+  const [getImage, setImage] = useState(props.modal);
 
-  const handleModal = () => {
-    setModal(!getModal);
-  };
+  const navigation = useNavigation();
 
   return (
     <View>
-      <Button color={'#3f3844'} title="ver detalhes" onPress={handleModal} />
-      <Modal isVisible={getModal} animationInTiming={1000} animationOutTiming={1500}>
-        <View style={styles.container}>
-          <View style={styles.closePart}>
-            <Image source={props.modal} resizeMode="contain"/>
-            <View style={styles.alignCenter}>
-              <Button color="#181818" title="fechar" onPress={handleModal} />
-              <TouchableOpacity style={[styles.size, styles.mgT]}>
-                <Text style={styles.sizeText}>P</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.size}>
-                <Text style={styles.sizeText}>M</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.size}>
-                <Text style={styles.sizeText}>G</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.size}>
-                <Text style={styles.sizeText}>GG</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <Text style={styles.title}>{props.title}</Text>
-          <Text style={styles.price}>{props.price}</Text>
-        </View>
-      </Modal>
+      <Button color={'#3f3844'} title="ver detalhes" onPress={() => navigation.navigate('Details', { title: getTitle, price: getPrice, image: getImage })} />
     </View>
   );
 }

@@ -19,6 +19,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     justifyContent: 'center',
     alignItems: 'center',
+    elevation: 2,
+    borderBottomColor: '#00000020',
+    borderBottomWidth: 1,
   },
   title: {
     fontFamily: 'AbrilFatface-Regular',
